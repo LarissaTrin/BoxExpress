@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { EnviosComponent } from './envios/envios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    EnviosComponent
   ],
   imports: [
     BrowserModule,
