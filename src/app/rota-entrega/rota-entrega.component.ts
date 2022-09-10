@@ -7,9 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RotaEntregaComponent implements OnInit {
 
+  viagem = false;
+  remetente = false;
+  destinatario = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  comecarViagem() {
+    this.viagem = !this.viagem;
+  }
+
+  trocaEndereco() {
+    if (!this.remetente) {
+      console.log("TEST");
+      this.remetente = !this.remetente;
+      this.comecarViagem();
+    } else {
+      this.destinatario = !this.destinatario;
+    }
+  }
 }
