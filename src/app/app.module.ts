@@ -9,6 +9,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { EnviosComponent } from './envios/envios.component';
 import { PrecoComponent } from './preco/preco.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
+import { RotaEntregaComponent } from './rota-entrega/rota-entrega.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PedidosComponent } from './pedidos/pedidos.component';
     NavbarComponent,
     EnviosComponent,
     PrecoComponent,
-    PedidosComponent
+    PedidosComponent,
+    RotaEntregaComponent
   ],
   imports: [
     BrowserModule,

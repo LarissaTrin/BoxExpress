@@ -1,7 +1,7 @@
 .map-container {
   position: absolute;
   top: 80px;
-  left: 500px;
+  left: 650px;
   right: 0;
   bottom: 0;
   margin: 30px;
@@ -9,6 +9,7 @@
 .map-frame {
   border: 2px solid #dc3545;
   height: 90%;
+  width: 95%;
 }
 #map {
   position: relative;

@@ -1,1 +1,107 @@
-<p>pedidos works!</p>
+<div class="row justify-content-md-center">
+    <div class="col-12">
+        <h1 class="text_title">
+            <div *ngIf="cliente">Pedidos</div>
+            <div *ngIf="!cliente">Solicitações</div>
+        </h1>
+    </div>
+    <div class="col-9 espace_colun">
+        <div class="card border-danger card-preco h4">
+            <div class="card-header bg-danger"></div>
+            <div class="card-body">
+                <h3>
+                    <div *ngIf="cliente">Pedido 1</div>
+                    <div *ngIf="!cliente">Solicitação 1</div>
+                </h3>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>Remetende: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Número de pacotes: </h4>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-danger btn-lg btn_marg">
+                            <div *ngIf="cliente">Detalhes</div>
+                            <div *ngIf="!cliente">Aceitar</div>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <h4>Destinatário: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Caixas solicitadas: </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-danger"></div>
+        </div>
+    </div>
+    <div class="col-9 espace_colun">
+        <div class="card border-danger card-preco h4">
+            <div class="card-header bg-danger"></div>
+            <div class="card-body">
+                <h3>
+                    <div *ngIf="cliente">Pedido 2</div>
+                    <div *ngIf="!cliente">Solicitação 2</div>
+                </h3>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>Remetente: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Número de pacotes: </h4>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-danger btn-lg btn_marg">
+                            <div *ngIf="cliente">Detalhes</div>
+                            <div *ngIf="!cliente">Aceitar</div>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <h4>Destinatário: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Caixas solicitadas: </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-danger"></div>
+        </div>
+    </div>
+    <div class="col-9 espace_colun">
+        <div class="card border-danger card-preco h4">
+            <div class="card-header bg-danger"></div>
+            <div class="card-body">
+                <h3>
+                    <div *ngIf="cliente">Pedido 3</div>
+                    <div *ngIf="!cliente">Solicitação 3</div>
+                </h3>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>Remetente: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Número de pacotes: </h4>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-danger btn-lg btn_marg">
+                            <div *ngIf="cliente">Detalhes</div>
+                            <div *ngIf="!cliente">Aceitar</div>
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <h4>Destinatário: </h4>
+                    </div>
+                    <div class="col-5">
+                        <h4>Caixas solicitadas: </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-danger"></div>
+        </div>
+    </div>
+</div>
