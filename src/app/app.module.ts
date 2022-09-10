@@ -10,6 +10,7 @@ import { EnviosComponent } from './envios/envios.component';
 import { PrecoComponent } from './preco/preco.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { RotaEntregaComponent } from './rota-entrega/rota-entrega.component';
+import { DataService } from './Service/service.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { RotaEntregaComponent } from './rota-entrega/rota-entrega.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

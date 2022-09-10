@@ -6,8 +6,12 @@
     <div class="row justify-content-end">
       <div class="col-4">
         <a type="button" class="btn btn-danger btn-lg"  style="margin-top: 50px;"
-          [routerLink]="['/envios']">
+          [routerLink]="['/envios']" *ngIf="clientLogin">
           Envie agora!
+        </a>
+        <a type="button" class="btn btn-danger btn-lg"  style="margin-top: 50px;"
+          [routerLink]="['/pedidos']" *ngIf="deliveryLogin">
+          Entregue agora!
         </a>
       </div>
     </div>

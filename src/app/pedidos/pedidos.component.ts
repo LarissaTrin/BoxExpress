@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../Service/service.service';
 
 @Component({
   selector: 'app-pedidos',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosComponent implements OnInit {
 
-  cliente = false;
-  constructor() { }
+  clientLogin: boolean | undefined;
+  deliveryLogin: boolean | undefined;
+  constructor(
+    private data: DataService,
+  ) { }
 
   ngOnInit(): void {
+    this.data.currentClientLogin.subscribe(clientLogin => this.clientLogin = clientLogin);
+    this.data.currentDeliveryLogin.subscribe(deliveryLogin => this.deliveryLogin = deliveryLogin);
   }
 
 }

@@ -1,8 +1,8 @@
 <div class="row justify-content-md-center">
     <div class="col-12">
         <h1 class="text_title">
-            <div *ngIf="cliente">Pedidos</div>
-            <div *ngIf="!cliente">Solicitações</div>
+            <div *ngIf="clientLogin">Pedidos</div>
+            <div *ngIf="deliveryLogin">Solicitações</div>
         </h1>
     </div>
     <div class="col-9 espace_colun">
@@ -10,8 +10,8 @@
             <div class="card-header bg-danger"></div>
             <div class="card-body">
                 <h3>
-                    <div *ngIf="cliente">Pedido 1</div>
-                    <div *ngIf="!cliente">Solicitação 1</div>
+                    <div *ngIf="clientLogin">Pedido 1</div>
+                    <div *ngIf="deliveryLogin">Solicitação 1</div>
                 </h3>
                 <hr>
                 <div class="row">
@@ -23,8 +23,8 @@
                     </div>
                     <div class="col-1">
                         <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="cliente">Detalhes</div>
-                            <div *ngIf="!cliente">Aceitar</div>
+                            <div *ngIf="clientLogin">Detalhes</div>
+                            <div *ngIf="deliveryLogin">Aceitar</div>
                         </button>
                     </div>
                     <div class="col-6">
@@ -43,8 +43,8 @@
             <div class="card-header bg-danger"></div>
             <div class="card-body">
                 <h3>
-                    <div *ngIf="cliente">Pedido 2</div>
-                    <div *ngIf="!cliente">Solicitação 2</div>
+                    <div *ngIf="clientLogin">Pedido 2</div>
+                    <div *ngIf="deliveryLogin">Solicitação 2</div>
                 </h3>
                 <hr>
                 <div class="row">
@@ -56,8 +56,8 @@
                     </div>
                     <div class="col-1">
                         <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="cliente">Detalhes</div>
-                            <div *ngIf="!cliente">Aceitar</div>
+                            <div *ngIf="clientLogin">Detalhes</div>
+                            <div *ngIf="deliveryLogin">Aceitar</div>
                         </button>
                     </div>
                     <div class="col-6">
@@ -76,8 +76,8 @@
             <div class="card-header bg-danger"></div>
             <div class="card-body">
                 <h3>
-                    <div *ngIf="cliente">Pedido 3</div>
-                    <div *ngIf="!cliente">Solicitação 3</div>
+                    <div *ngIf="clientLogin">Pedido 3</div>
+                    <div *ngIf="deliveryLogin">Solicitação 3</div>
                 </h3>
                 <hr>
                 <div class="row">
@@ -89,8 +89,8 @@
                     </div>
                     <div class="col-1">
                         <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="cliente">Detalhes</div>
-                            <div *ngIf="!cliente">Aceitar</div>
+                            <div *ngIf="clientLogin">Detalhes</div>
+                            <div *ngIf="deliveryLogin">Aceitar</div>
                         </button>
                     </div>
                     <div class="col-6">

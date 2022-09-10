@@ -21,7 +21,6 @@ export class RotaEntregaComponent implements OnInit {
 
   trocaEndereco() {
     if (!this.remetente) {
-      console.log("TEST");
       this.remetente = !this.remetente;
       this.comecarViagem();
     } else {
