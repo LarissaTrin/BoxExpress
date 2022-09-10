@@ -8,29 +8,29 @@
           Solicitação de Entrega
         </h3>
         <hr>
-        <form class="row g-3">
-          <div class="col-12">
-            <label for="inputNome1" class="form-label">Nome do Remetente</label>
-            <input type="text" class="form-control" id="inputNome1" placeholder="Nome Sobrenome">
+        <form class="row g-3" [formGroup]="pedidoForm" (submit)="pedidoSubmit()">
+          <div class="col-12 form-group">
+            <label for="inputNomeRemetente" class="form-label">Nome do Remetente</label>
+            <input type="text" class="form-control" id="inputNomeRemetente" formControlName="nomeRemetente" placeholder="Nome Sobrenome">
           </div>
-          <div class="col-12">
-            <label for="inputAddress1" class="form-label">Endereço do Remetente</label>
-            <input type="text" class="form-control" id="inputAddress1" placeholder="Nome Sobrenome">
+          <div class="col-12 form-group">
+            <label for="inputAddressRemetente" class="form-label">Endereço do Remetente</label>
+            <input type="text" class="form-control" id="inputAddressRemetente" formControlName="enderecoRemetente" placeholder="Apartment, studio, or floor">
           </div>
           <p></p>
-          <div class="col-12">
-            <label for="inputNome2" class="form-label">Nome do Destinatário</label>
-            <input type="text" class="form-control" id="inputNome2" placeholder="Apartment, studio, or floor">
+          <div class="col-12 form-group">
+            <label for="inputNomeDestino" class="form-label">Nome do Destinatário</label>
+            <input type="text" class="form-control" id="inputNomeDestino" formControlName="nomeDestino" placeholder="Nome Sobrenome">
           </div>
-          <div class="col-12">
-            <label for="inputAddress2" class="form-label">Endereço do Destinatário</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          <div class="col-12 form-group">
+            <label for="inputAddressDestino" class="form-label">Endereço do Destinatário</label>
+            <input type="text" class="form-control" id="inputAddressDestino" formControlName="enderecoDestino" placeholder="Apartment, studio, or floor">
           </div>
           <button class="btn btn-danger" style="font-weight: bold;">Checar envio</button>
           <hr>
-          <div class="input-group col-12">
+          <div class="input-group col-12 form-group">
             <span class="input-group-text sty-danger" for="inputPacote">Pacotes</span>
-            <select id="inputPacote" class="form-select">
+            <select id="inputPacote" class="form-select" formControlName="pacotes">
               <option selected>Quantidade de Pacotes</option>
               <option>Somente 1</option>
               <option>Entre 2 a 5</option>
@@ -38,9 +38,9 @@
               <option>Acima de 10</option>
             </select>
           </div>
-          <div class="input-group col-12">
+          <div class="input-group col-12 form-group">
             <span class="input-group-text sty-danger" for="inputPeso">Peso Total</span>
-            <select id="inputPeso" class="form-select">
+            <select id="inputPeso" class="form-select" formControlName="peso">
               <option selected>Peso Total da Carga...</option>
               <option>Menos que 2kg</option>
               <option>Entre 2Kg a 10kg</option>
@@ -48,9 +48,9 @@
               <option>Acima de 20kg</option>
             </select>
           </div>
-          <div class="input-group col-12">
+          <div class="input-group col-12 form-group">
             <div class="input-group-text sty-danger-border col-12">
-              <input class="form-check-input test mt-0" type="checkbox" id="gridCheck" value="">
+              <input class="form-check-input test mt-0" type="checkbox" id="gridCheck" value="" formControlName="isCaixas">
               <label class="form-check-label" for="gridCheck" style="margin-left: 20px;">
                 Solicito caixas para a entrega
               </label>
@@ -64,7 +64,9 @@
             <h3 class="text-price">R$ 0.00</h3>
           </div>
           <p></p>
-          <button type="submit" class="btn btn-danger" style="font-weight: bold;">Solicitar Entrega</button>
+          <div class="form-group">
+            <button type="submit" class="btn btn-danger col-12" [disabled]="!pedidoForm.valid" style="font-weight: bold;">Solicitar Entrega</button>
+          </div>
         </form>
       </div>
       <div class="card-footer bg-danger"></div>
