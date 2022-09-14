@@ -1,5 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Type } from '@angular/core';
 import * as L from 'leaflet';
+import 'leaflet-routing-machine';
+
 
 @Component({
   selector: 'app-map',
@@ -9,7 +11,11 @@ import * as L from 'leaflet';
 export class MapComponent implements AfterViewInit {
   private map: any;
 
-  constructor() { }
+  private apiKey = "AAPK34a373736a6947518b277ea4d9f62d10i09tYBOdMKx4db4hvBzcUjBKnG_DxASCbRe60Cj4DCvOGJ_ozq4KcBPTSlxJ-hOU";
+  private basemapEnum = "ArcGIS:Navigation"
+
+  constructor(
+  ) { }
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -19,7 +25,7 @@ export class MapComponent implements AfterViewInit {
     this.map = L.map('map', {
       center: [-22.911077755911283, -43.236133510427784],
       zoom: 15
-  });
+    });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
@@ -28,5 +34,16 @@ export class MapComponent implements AfterViewInit {
     });
 
     tiles.addTo(this.map);
+
+    const routing = L.Routing.control({
+      waypoints: [
+        L.latLng(-22.911077755911283, -43.236133510427784),
+        L.latLng(57.6792, 11.949)
+    ],
+  });
+
+  routing.addTo(this.map);
+
+  // var geocoder = L.Routing.geocoderElement();
   }
 }
