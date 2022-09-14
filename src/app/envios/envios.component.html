@@ -1,11 +1,10 @@
-
+<!--
 <div style="position: relative">
-  <input (keyup)="search($event)" (keyup.enter)="onSelect($event)">
+  <input (keyup)="testSearch($event)" (keyup.enter)="onSelect($event)">
   <div *ngFor="let address of addresses" style="color: white">
     <li>{{ address }}</li>
   </div>
-</div>
-
+</div> -->
 <div class="row">
   <div class="col-3">
     <div class="card border-danger card-form">
@@ -22,7 +21,18 @@
           </div>
           <div class="col-12 form-group">
             <label for="inputAddressRemetente" class="form-label">Endereço do Remetente</label>
-            <input type="text" class="form-control" id="inputAddressRemetente" formControlName="enderecoRemetente" placeholder="Apartment, studio, or floor">
+            <input id="inputAddressRemetente"
+              type="text"
+              class="form-control"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="selectedAddressRemetente"
+              (keyup)="search($event)"
+              (keyup.enter)="onSelect($event, true)"
+              [ngbTypeahead]="searchAutocompleted"
+              (click)="click$.next($any($event).target.value)"
+              placeholder="Apartment, studio, or floor"
+              #instance="ngbTypeahead"
+            />
           </div>
           <p></p>
           <div class="col-12 form-group">
@@ -31,9 +41,23 @@
           </div>
           <div class="col-12 form-group">
             <label for="inputAddressDestino" class="form-label">Endereço do Destinatário</label>
-            <input type="text" class="form-control" id="inputAddressDestino" formControlName="enderecoDestino" placeholder="Apartment, studio, or floor">
+            <input id="inputAddressRemetente"
+              type="text"
+              class="form-control"
+              [(ngModel)]="selectedAddressDestino"
+              [ngModelOptions]="{standalone: true}"
+              (keyup.enter)="onSelect($event, false)"
+              (keyup)="search($event)"
+              [ngbTypeahead]="searchAutocompleted"
+              (click)="click$.next($any($event).target.value)"
+              placeholder="Apartment, studio, or floor"
+              #instance="ngbTypeahead"
+            />
           </div>
-          <button class="btn btn-danger" style="font-weight: bold;">Checar envio</button>
+          <button class="btn btn-danger" style="font-weight: bold;"
+            [disabled]="(selectedAddressRemetente == '' || selectedAddressDestino == '')">
+              Checar envio
+          </button>
           <hr>
           <div class="input-group col-12 form-group">
             <span class="input-group-text sty-danger" for="inputPacote">Pacotes</span>
@@ -72,7 +96,15 @@
           </div>
           <p></p>
           <div class="form-group">
-            <button type="submit" class="btn btn-danger col-12" [disabled]="!pedidoForm.valid" style="font-weight: bold;">Solicitar Entrega</button>
+            <button *ngIf="(selectedAddressRemetente == '' || selectedAddressDestino == '')"
+              class="btn btn-danger col-12" style="font-weight: bold;" disabled>
+                Solicitar Entrega
+            </button>
+            <button *ngIf="(selectedAddressRemetente != '' && selectedAddressDestino != '')"
+              type="submit" class="btn btn-danger col-12" [disabled]="!pedidoForm.valid"
+              style="font-weight: bold;">
+                Solicitar Entrega
+            </button>
           </div>
         </form>
       </div>
