@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, AfterViewInit, Type } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
@@ -10,9 +11,8 @@ import 'leaflet-routing-machine';
 })
 export class MapComponent implements AfterViewInit {
   private map: any;
+  private token = environment.mapbox.accessToken;
 
-  private apiKey = "AAPK34a373736a6947518b277ea4d9f62d10i09tYBOdMKx4db4hvBzcUjBKnG_DxASCbRe60Cj4DCvOGJ_ozq4KcBPTSlxJ-hOU";
-  private basemapEnum = "ArcGIS:Navigation"
 
   constructor(
   ) { }
@@ -38,7 +38,7 @@ export class MapComponent implements AfterViewInit {
     const routing = L.Routing.control({
       waypoints: [
         L.latLng(-22.911077755911283, -43.236133510427784),
-        L.latLng(57.6792, 11.949)
+        L.latLng(-22.933073257430088, -43.17908416158599)
     ],
   });
 

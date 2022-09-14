@@ -1,4 +1,11 @@
 
+<div style="position: relative">
+  <input (keyup)="search($event)" (keyup.enter)="onSelect($event)">
+  <div *ngFor="let address of addresses" style="color: white">
+    <li>{{ address }}</li>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-3">
     <div class="card border-danger card-form">
