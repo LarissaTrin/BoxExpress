@@ -34,8 +34,8 @@ export class EnviosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mapaPlot.currentCoord1.subscribe(coord1 => this.pedidoFeito.coordRemetente = coord1);
-    this.mapaPlot.currentCoord2.subscribe(coord2 => this.pedidoFeito.coordDestino = coord2);
+    // this.mapaPlot.currentCoord1.subscribe(coord1 => this.pedidoFeito.coordRemetente = coord1);
+    // this.mapaPlot.currentCoord2.subscribe(coord2 => this.pedidoFeito.coordDestino = coord2);
     this.mapaPlot.currentPedidos.subscribe(pedidos_service => this.pedidosFeitos = pedidos_service.length);
   }
 
@@ -61,6 +61,16 @@ export class EnviosComponent implements OnInit {
     this.pedidoFeito.id = this.pedidosFeitos;
     // console.log("this.pedidoFeito: ",this.pedidoFeito);
     this.mapaPlot.changePedidos(this.pedidoFeito);
+    this.resetForm();
+    ++this.pedidosFeitos;
+  }
+
+  resetForm() {
+    this.criarForm();
+    this.selectedAddressRemetente = '';
+    this.selectedAddressDestino = '';
+    this.pedidoFeito = new Pedidos;
+    this.isMapRouting = false;
   }
 
   checarRota() {

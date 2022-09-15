@@ -30,7 +30,6 @@ export class RotaEntregaComponent implements OnInit {
 
   comecarViagem() {
     if (!this.remetente) {
-      debugger
       this.data.changeCoord1(this.coordInicial);
       this.data.changeCoord2(this.coord1);
     } else {
