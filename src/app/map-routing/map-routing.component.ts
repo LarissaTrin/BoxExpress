@@ -44,7 +44,7 @@ export class MapRoutingComponent implements AfterViewInit {
   private initMap(): void {
     this.map = L.map('map', {
       center: [-22.911077755911283, -43.236133510427784],
-      zoom: 15
+      zoom: 13
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -61,6 +61,7 @@ export class MapRoutingComponent implements AfterViewInit {
           L.latLng(this.coord1[1], this.coord1[0]),
           L.latLng(this.coord2[1], this.coord2[0])
         ],
+        useZoomParameter: true
       });
     routing.addTo(this.map);
   }
