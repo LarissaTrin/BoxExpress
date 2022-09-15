@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-3">
+    <div class="col-3" *ngIf="!destinatario">
         <div class="card border-danger card-form">
             <div class="card-header bg-danger"></div>
             <div class="card-body row g-3">
@@ -14,15 +14,15 @@
                 <hr>
                 <div *ngIf="!remetente">
                     <h5>Nome do Remetente:</h5>
-                    <h5 class="text-end">nome do remetente blablabla</h5>
+                    <h5 class="text-end">{{ pedidoEscolhido.nomeRemetente }}</h5>
                     <h5>Endereço:</h5>
-                    <h5 class="text-end">endereço do remetente blablabla</h5>
+                    <h5 class="text-end">{{ pedidoEscolhido.enderecoRemetente }}</h5>
                 </div>
                 <div *ngIf="remetente && !destinatario">
                     <h5>Nome do Destinatário:</h5>
-                    <h5 class="text-end">nome do destinatário blablabla</h5>
+                    <h5 class="text-end">{{ pedidoEscolhido.nomeDestino }}</h5>
                     <h5>Endereço:</h5>
-                    <h5 class="text-end">endereço do destinatário blablabla</h5>
+                    <h5 class="text-end">{{ pedidoEscolhido.enderecoDestino }}</h5>
                 </div>
                 <div *ngIf="destinatario">
                     <h3 class="text-center">Entrega concluida com exito!</h3>
@@ -50,6 +50,30 @@
             <div class="card-footer bg-danger"></div>
         </div>
     </div>
+    <div class="col-12" *ngIf="destinatario">
+      <div class="card border-danger card-form">
+        <div class="card-header bg-danger"></div>
+        <div class="card-body row g-3">
+            <div>
+                <h3 class="card-title text-center">
+                    Entrega Concluida
+                </h3>
+            </div>
+            <hr>
+            <div>
+                <h3 class="text-center">Entrega concluida com exito!</h3>
+                <p></p>
+                <h5 class="text-center">Aguarde ou pegue uma nova solicitação</h5>
+            </div>
+        </div>
+        <div class="card-footer bg-danger"></div>
+    </div>
+    </div>
 </div>
 
-<app-map></app-map>
+<div class="col-9" *ngIf="!viagem && !destinatario">
+  <app-map></app-map>
+</div>
+<div class="col-9" *ngIf="viagem && !destinatario">
+  <app-map-routing></app-map-routing>
+</div>

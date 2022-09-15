@@ -22,6 +22,8 @@ export class DataService {
   // Controle dos pedidos
   private pedidos = new BehaviorSubject([Pedidos]);
   currentPedidos = this.pedidos.asObservable();
+  private pedidoEscolhido = new BehaviorSubject(Pedidos);
+  currentPedidoEscolhido = this.pedidoEscolhido.asObservable();
 
   constructor() { }
 
@@ -50,5 +52,8 @@ export class DataService {
     // console.log("pedidos.value: ", this.pedidos.value);
     this.pedidos.value.push(pedido);
     // console.log("Final  pedidos.value: ", this.pedidos.value);
+  }
+  public changePedidoEscolhido(pedido: any){
+    this.pedidoEscolhido.next(pedido);
   }
 }

@@ -25,9 +25,13 @@
                   <h4>Número de pacotes: {{ pedido.pacotes }}</h4>
                 </div>
                 <div class="col-1">
-                  <button type="button" class="btn btn-danger btn-lg btn_marg">
-                    <div *ngIf="clientLogin">Detalhes</div>
-                    <div *ngIf="deliveryLogin">Aceitar</div>
+                  <button type="button" class="btn btn-danger btn-lg btn_marg"
+                    *ngIf="clientLogin">
+                    Detalhes
+                  </button>
+                  <button type="button" class="btn btn-danger btn-lg btn_marg"
+                    *ngIf="deliveryLogin" (click)="entegaAceita(pedido.id)">
+                    Aceitar
                   </button>
                 </div>
                 <div class="col-6">
