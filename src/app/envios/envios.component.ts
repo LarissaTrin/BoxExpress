@@ -16,6 +16,7 @@ export class EnviosComponent implements OnInit {
   public pedidoForm!: FormGroup;
   public addresses: string[] = [];
   public pedidoFeito: Pedidos = new Pedidos;
+  public pedidosFeitos: number = 0;
   selectedAddressRemetente = '';
   selectedAddressDestino = '';
   public isMapRouting = false;
@@ -35,6 +36,7 @@ export class EnviosComponent implements OnInit {
   ngOnInit(): void {
     this.mapaPlot.currentCoord1.subscribe(coord1 => this.pedidoFeito.coordRemetente = coord1);
     this.mapaPlot.currentCoord2.subscribe(coord2 => this.pedidoFeito.coordDestino = coord2);
+    this.mapaPlot.currentPedidos.subscribe(pedidos_service => this.pedidosFeitos = pedidos_service.length);
   }
 
   criarForm () {
@@ -49,9 +51,16 @@ export class EnviosComponent implements OnInit {
   }
 
   pedidoSubmit() {
-    console.log(this.pedidoForm?.value);
-
-
+    // console.log("this.pedidoForm?.value: ",this.pedidoForm?.value);
+    // console.log("this.pedidoFeito: ",this.pedidoFeito);
+    this.pedidoFeito.nomeRemetente = this.pedidoForm.value.nomeRemetente;
+    this.pedidoFeito.nomeDestino = this.pedidoForm.value.nomeDestino;
+    this.pedidoFeito.isCaixas = this.pedidoForm.value.isCaixas;
+    this.pedidoFeito.pacotes = this.pedidoForm.value.pacotes;
+    this.pedidoFeito.peso = this.pedidoForm.value.peso;
+    this.pedidoFeito.id = this.pedidosFeitos;
+    // console.log("this.pedidoFeito: ",this.pedidoFeito);
+    this.mapaPlot.changePedidos(this.pedidoFeito);
   }
 
   checarRota() {
@@ -102,7 +111,7 @@ export class EnviosComponent implements OnInit {
           this.pedidoFeito.coordDestino = coord_feature;
           this.pedidoFeito.enderecoDestino = this.selectedAddressDestino;
         }
-        console.log("pedidoFeito:  ",this.pedidoFeito);
+        // console.log("pedidoFeito:  ",this.pedidoFeito);
         this.addresses = [];
     });
   }
