@@ -11,6 +11,11 @@ export class DataService {
   private deliveryLogin = new BehaviorSubject(false);
   currentDeliveryLogin = this.deliveryLogin.asObservable();
 
+  private coord1 = new BehaviorSubject([0, 0]);
+  currentCoord1 = this.coord1.asObservable();
+  private coord2 = new BehaviorSubject([0, 0]);
+  currentCoord2 = this.coord2.asObservable();
+
   constructor() { }
 
   changeClientLogin(login: boolean){
@@ -22,4 +27,12 @@ export class DataService {
     this.clientLogin.next(!login);
   }
 
+  public changeCoord1(coord1: number[]){
+    // console.log("OLA")
+    this.coord1.next(coord1);
+  }
+
+  public changeCoord2(coord2: number[]){
+    this.coord2.next(coord2);
+  }
 }

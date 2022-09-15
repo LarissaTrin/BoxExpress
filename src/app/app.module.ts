@@ -15,6 +15,7 @@ import { PrecoComponent } from './preco/preco.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { RotaEntregaComponent } from './rota-entrega/rota-entrega.component';
 import { DataService } from './Service/service.service';
+import { MapRoutingComponent } from './map-routing/map-routing.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DataService } from './Service/service.service';
     EnviosComponent,
     PrecoComponent,
     PedidosComponent,
-    RotaEntregaComponent
+    RotaEntregaComponent,
+    MapRoutingComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,10 @@ import { DataService } from './Service/service.service';
     NgbPaginationModule,
     NgbAlertModule,
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    MapRoutingComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

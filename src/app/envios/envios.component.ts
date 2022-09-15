@@ -4,6 +4,7 @@ import { mapService, Feature, MapboxOutput } from '../Service/mapService.service
 import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import { Pedidos } from '../models/Pedidos';
 import { debounceTime, distinctUntilChanged, filter, map, merge, Observable, OperatorFunction, Subject } from 'rxjs';
+import { DataService } from '../Service/service.service';
 
 @Component({
   selector: 'app-envios',
@@ -17,6 +18,7 @@ export class EnviosComponent implements OnInit {
   public pedidoFeito: Pedidos = new Pedidos;
   selectedAddressRemetente = '';
   selectedAddressDestino = '';
+  public isMapRouting = false;
 
   @ViewChild('instance', { static: true })
   instance!: NgbTypeahead;
@@ -25,11 +27,14 @@ export class EnviosComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private mapBoxServ: mapService,
+    private mapaPlot: DataService,
   ) {
     this.criarForm();
   }
 
   ngOnInit(): void {
+    this.mapaPlot.currentCoord1.subscribe(coord1 => this.pedidoFeito.coordRemetente = coord1);
+    this.mapaPlot.currentCoord2.subscribe(coord2 => this.pedidoFeito.coordDestino = coord2);
   }
 
   criarForm () {
@@ -47,6 +52,18 @@ export class EnviosComponent implements OnInit {
     console.log(this.pedidoForm?.value);
 
 
+  }
+
+  checarRota() {
+    this.mapaPlot.changeCoord1(this.pedidoFeito.coordRemetente);
+    this.mapaPlot.changeCoord2(this.pedidoFeito.coordDestino);
+
+    // console.log("pedidoFeito.coordRemetente: ", this.pedidoFeito.coordRemetente);
+    // console.log("pedidoFeito.coordDestino: ", this.pedidoFeito.coordDestino);
+    // this.mapaPlot.addRouting();
+    this.isMapRouting = true;
+    // Rua Martins Ribeiro 12, Flamengo, Rio De Janeiro - Rio de Janeiro, 22231, Brazil
+    // Rua São Francisco Xavier, Maracanã, Rio De Janeiro - Rio de Janeiro, 20271, Brazil
   }
 
   async search(event: any) {
@@ -88,7 +105,6 @@ export class EnviosComponent implements OnInit {
         console.log("pedidoFeito:  ",this.pedidoFeito);
         this.addresses = [];
     });
-    // Rua Martins Ribeiro 12, Flamengo, Rio De Janeiro - Rio de Janeiro, 22231, Brazil
   }
 
   searchAutocompleted: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) => {

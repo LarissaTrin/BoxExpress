@@ -41,7 +41,7 @@ export class mapService {
     const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
     return this.http.get(url + query + '.json?types=address&access_token='
     + this.token).pipe(map((res: any) => {
-      console.log("TO AQUI: ", res.features[0])
+      // console.log("TO AQUI: ", res.features[0])
       return res.features[0].center;
     }));
   }
