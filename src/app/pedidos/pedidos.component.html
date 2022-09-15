@@ -1,107 +1,54 @@
 <div class="row justify-content-md-center">
-    <div class="col-12">
-        <h1 class="text_title">
-            <div *ngIf="clientLogin">Pedidos</div>
-            <div *ngIf="deliveryLogin">Solicitações</div>
-        </h1>
-    </div>
-    <div class="col-9 espace_colun">
-        <div class="card border-danger card-preco h4">
+  <div class="col-12">
+    <h1 class="text_title">
+      <div *ngIf="clientLogin">Pedidos</div>
+      <div *ngIf="deliveryLogin">Solicitações</div>
+    </h1>
+  </div>
+  <div *ngIf="numPedidos > 0">
+    <div class="col-12" *ngFor="let pedido of pedidosList">
+      <div class="row justify-content-md-center">
+        <div class="col-9 espace_colun">
+          <div class="card border-danger card-preco h4">
             <div class="card-header bg-danger"></div>
             <div class="card-body">
-                <h3>
-                    <div *ngIf="clientLogin">Pedido 1</div>
-                    <div *ngIf="deliveryLogin">Solicitação 1</div>
-                </h3>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <h4>Remetende: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Número de pacotes: </h4>
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="clientLogin">Detalhes</div>
-                            <div *ngIf="deliveryLogin">Aceitar</div>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <h4>Destinatário: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Caixas solicitadas: </h4>
-                    </div>
+              <h3>
+                <div *ngIf="clientLogin">Pedido {{ pedido.id }}</div>
+                <div *ngIf="deliveryLogin">Solicitação {{ pedido.id }}</div>
+              </h3>
+              <hr>
+              <div class="row">
+                <div class="col-6">
+                  <h4>Remetende: {{ pedido.enderecoRemetente }}</h4>
                 </div>
+                <div class="col-5">
+                  <h4>Número de pacotes: {{ pedido.pacotes }}</h4>
+                </div>
+                <div class="col-1">
+                  <button type="button" class="btn btn-danger btn-lg btn_marg">
+                    <div *ngIf="clientLogin">Detalhes</div>
+                    <div *ngIf="deliveryLogin">Aceitar</div>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <h4>Destinatário: {{ pedido.enderecoDestino }}</h4>
+                </div>
+                <div class="col-5">
+                  <h4 *ngIf="pedido.isCaixas">Caixas solicitadas: Sim</h4>
+                  <h4 *ngIf="!pedido.isCaixas">Caixas solicitadas: Não</h4>
+                </div>
+              </div>
             </div>
             <div class="card-footer bg-danger"></div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="col-9 espace_colun">
-        <div class="card border-danger card-preco h4">
-            <div class="card-header bg-danger"></div>
-            <div class="card-body">
-                <h3>
-                    <div *ngIf="clientLogin">Pedido 2</div>
-                    <div *ngIf="deliveryLogin">Solicitação 2</div>
-                </h3>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <h4>Remetente: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Número de pacotes: </h4>
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="clientLogin">Detalhes</div>
-                            <div *ngIf="deliveryLogin">Aceitar</div>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <h4>Destinatário: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Caixas solicitadas: </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-danger"></div>
-        </div>
-    </div>
-    <div class="col-9 espace_colun">
-        <div class="card border-danger card-preco h4">
-            <div class="card-header bg-danger"></div>
-            <div class="card-body">
-                <h3>
-                    <div *ngIf="clientLogin">Pedido 3</div>
-                    <div *ngIf="deliveryLogin">Solicitação 3</div>
-                </h3>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <h4>Remetente: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Número de pacotes: </h4>
-                    </div>
-                    <div class="col-1">
-                        <button type="button" class="btn btn-danger btn-lg btn_marg">
-                            <div *ngIf="clientLogin">Detalhes</div>
-                            <div *ngIf="deliveryLogin">Aceitar</div>
-                        </button>
-                    </div>
-                    <div class="col-6">
-                        <h4>Destinatário: </h4>
-                    </div>
-                    <div class="col-5">
-                        <h4>Caixas solicitadas: </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-danger"></div>
-        </div>
-    </div>
+  </div>
+  <div *ngIf="numPedidos == 0">
+    <h1 class="text_title">
+      <div *ngIf="clientLogin">Ainda nenhum pedido realizado</div>
+      <div *ngIf="deliveryLogin">Ainda nenhum pedido solicitado</div>
+    </h1>
+  </div>
 </div>
