@@ -16,6 +16,8 @@ export class RotaEntregaComponent implements OnInit {
   coordInicial: number[] = [];
   coord1: number[] = [];
   coord2: number[] = [];
+  km = 0;
+  time = 0;
 
   constructor(
     private data: DataService,
@@ -23,6 +25,8 @@ export class RotaEntregaComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.currentPedidoEscolhido.subscribe(pedido => this.pedidoEscolhido = pedido);
+    this.data.currentQuilometro.subscribe(quilometro => this.km = Math.round((quilometro / 1000) * 10) / 10);
+    this.data.currentTempo.subscribe(tempo => this.time = Math.round((tempo / 60) * 10) / 10);
     this.coordInicial = [-43.236133510427784, -22.911077755911283];
     this.coord1 = Object.assign([], this.pedidoEscolhido.coordRemetente);
     this.coord2 = Object.assign([], this.pedidoEscolhido.coordDestino);
