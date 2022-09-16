@@ -42,7 +42,6 @@ export class PedidosComponent implements OnInit {
     for (let i = 1; i < this.pedidos_service.length; i++) {
       this.pedidosList.push(this.pedidos_service[i]);
     }
-    console.log("pedidosList: ", this.pedidosList)
   }
 
   entegaAceita(id: number) {

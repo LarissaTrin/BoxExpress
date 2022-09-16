@@ -50,7 +50,6 @@ export class DataService {
   // Modificação dos preços
   public changeQuilometro(km: number){
     this.quilometro.next(km);
-    // num.format('$0,0.00')
   }
   public changeTime(time: number){
     this.tempo.next(time);

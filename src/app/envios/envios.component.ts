@@ -121,17 +121,13 @@ export class EnviosComponent implements OnInit {
         : this.addresses.filter(v => v.toLowerCase()
         .indexOf(term.toLowerCase()) > -1)).slice(0, 10))
     );
-
-    // console.log(this.addresses);
   }
 
   onSelect(event: any, addressValue: boolean) {
     const address = event.target.value.toLowerCase();
-    // console.log("OIII: ", address);
     this.mapBoxServ
       .search_coord(address)
       .subscribe((coord_feature: any) => {
-        // console.log("vamos la: ",coord_feature);
         if (addressValue) {
           this.pedidoFeito.coordRemetente = coord_feature;
           this.pedidoFeito.enderecoRemetente = this.selectedAddressRemetente;
@@ -139,7 +135,6 @@ export class EnviosComponent implements OnInit {
           this.pedidoFeito.coordDestino = coord_feature;
           this.pedidoFeito.enderecoDestino = this.selectedAddressDestino;
         }
-        // console.log("pedidoFeito:  ",this.pedidoFeito);
         this.addresses = [];
     });
   }

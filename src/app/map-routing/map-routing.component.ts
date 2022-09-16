@@ -29,10 +29,6 @@ export class MapRoutingComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.mapaPlot.currentCoord1.subscribe((coord1) => (this.coord1 = coord1));
     this.mapaPlot.currentCoord2.subscribe((coord2) => (this.coord2 = coord2));
-    // console.log("FOI?");
-    // console.log("coord1: ", this.coord1);
-    // console.log("coord2: ", this.coord2);
-    // debugger;
     this.initMap();
   }
 
@@ -54,7 +50,6 @@ export class MapRoutingComponent implements AfterViewInit {
 
     tiles.addTo(this.map);
 
-    console.log();
     const routing = L.Routing.control({
       waypoints: [
         L.latLng(this.coord1[1], this.coord1[0]),
@@ -70,10 +65,6 @@ export class MapRoutingComponent implements AfterViewInit {
     routing.on('routesfound',  (e) => {
       distance = e.routes[0].summary.totalDistance;
       min = e.routes[0].summary.totalTime
-
-      console.log("routing");
-      console.log("distance: ", distance);
-      console.log("min: ", min);
 
       this.mapaPlot.changeQuilometro(distance);
       this.mapaPlot.changeTime(min);
