@@ -19,6 +19,16 @@ export class DataService {
   private coord2 = new BehaviorSubject([0, 0]);
   currentCoord2 = this.coord2.asObservable();
 
+  // Controle do preço
+  private quilometro = new BehaviorSubject(0);
+  currentQuilometro = this.quilometro.asObservable();
+  private tempo = new BehaviorSubject(0);
+  currentTempo = this.tempo.asObservable();
+  private itens = new BehaviorSubject(0);
+  currentItens = this.itens.asObservable();
+  private preco = new BehaviorSubject('0.00');
+  currentPreco = this.preco.asObservable();
+
   // Controle dos pedidos
   private pedidos = new BehaviorSubject([Pedidos]);
   currentPedidos = this.pedidos.asObservable();
@@ -37,9 +47,22 @@ export class DataService {
     this.clientLogin.next(!login);
   }
 
+  // Modificação dos preços
+  public changeQuilometro(km: number){
+    this.quilometro.next(km);
+    // num.format('$0,0.00')
+  }
+  public changeTime(time: number){
+    this.tempo.next(time);
+  }
+  public changeItens(itens: number){
+    const km = Math.round(((this.quilometro.value / 1000) * 0.5) * 100) / 100
+    this.itens.next(itens + km);
+    this.preco.next(this.itens.value.toString());
+  }
+
   // Modificação das rotas
   public changeCoord1(coord1: number[]){
-    // console.log("OLA")
     this.coord1.next(coord1);
   }
   public changeCoord2(coord2: number[]){
@@ -48,10 +71,7 @@ export class DataService {
 
   // Modificação dos Pedidos
   public changePedidos(pedido: any){
-    // console.log("pedido: ", pedido);
-    // console.log("pedidos.value: ", this.pedidos.value);
     this.pedidos.value.push(pedido);
-    // console.log("Final  pedidos.value: ", this.pedidos.value);
   }
   public changePedidoEscolhido(pedido: any){
     this.pedidoEscolhido.next(pedido);

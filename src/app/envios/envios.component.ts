@@ -20,6 +20,9 @@ export class EnviosComponent implements OnInit {
   selectedAddressRemetente = '';
   selectedAddressDestino = '';
   public isMapRouting = false;
+  public km = 0;
+  public preco = '';
+  public isPreco = false;
 
   @ViewChild('instance', { static: true })
   instance!: NgbTypeahead;
@@ -34,9 +37,10 @@ export class EnviosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.mapaPlot.currentCoord1.subscribe(coord1 => this.pedidoFeito.coordRemetente = coord1);
-    // this.mapaPlot.currentCoord2.subscribe(coord2 => this.pedidoFeito.coordDestino = coord2);
     this.mapaPlot.currentPedidos.subscribe(pedidos_service => this.pedidosFeitos = pedidos_service.length);
+    this.mapaPlot.currentPreco.subscribe(preco => this.preco = preco);
+    this.mapaPlot.currentQuilometro.subscribe(quilometro => this.km = quilometro);
+    // this.mapaPlot.currentTempo.subscribe(tempo => this.time = tempo);
   }
 
   criarForm () {
@@ -44,22 +48,41 @@ export class EnviosComponent implements OnInit {
       id: [''],
       nomeRemetente: ['', Validators.required],
       nomeDestino: ['', Validators.required],
-      pacotes: ['Quantidade de Pacotes', [Validators.required, Validators.maxLength(12)]],
+      pacotes: ['Quantidade de Pacotes'],
       peso: ['Peso Total da Carga...', [Validators.required, Validators.maxLength(17)]],
       isCaixas: [false],
     });
   }
 
+  precoPorItem() {
+    let total = 0;
+    const pesoItem = parseInt(this.pedidoForm.value.peso);
+    this.km = this.km / 1000
+    if (this.km < 50) {
+      total = total + (10 * pesoItem)
+    } else if (this.km < 150) {
+      total = total + (13 * pesoItem)
+    } else {
+      total = total + (30 * pesoItem)
+    }
+
+    if (this.pedidoForm.value.isCaixas) {
+      const pacotesItem = parseInt(this.pedidoForm.value.pacotes);
+      total = total + (6 * pacotesItem)
+    }
+
+    this.isPreco = true;
+    this.mapaPlot.changeItens(total);
+  }
+
   pedidoSubmit() {
-    // console.log("this.pedidoForm?.value: ",this.pedidoForm?.value);
-    // console.log("this.pedidoFeito: ",this.pedidoFeito);
     this.pedidoFeito.nomeRemetente = this.pedidoForm.value.nomeRemetente;
     this.pedidoFeito.nomeDestino = this.pedidoForm.value.nomeDestino;
     this.pedidoFeito.isCaixas = this.pedidoForm.value.isCaixas;
-    this.pedidoFeito.pacotes = this.pedidoForm.value.pacotes;
-    this.pedidoFeito.peso = this.pedidoForm.value.peso;
+    this.pedidoFeito.pacotes = parseInt(this.pedidoForm.value.pacotes);
+    this.pedidoFeito.peso = parseInt(this.pedidoForm.value.peso);
     this.pedidoFeito.id = this.pedidosFeitos;
-    // console.log("this.pedidoFeito: ",this.pedidoFeito);
+
     this.mapaPlot.changePedidos(this.pedidoFeito);
     this.resetForm();
     ++this.pedidosFeitos;
@@ -71,18 +94,13 @@ export class EnviosComponent implements OnInit {
     this.selectedAddressDestino = '';
     this.pedidoFeito = new Pedidos;
     this.isMapRouting = false;
+    this.isPreco = false;
   }
 
   checarRota() {
     this.mapaPlot.changeCoord1(this.pedidoFeito.coordRemetente);
     this.mapaPlot.changeCoord2(this.pedidoFeito.coordDestino);
-
-    // console.log("pedidoFeito.coordRemetente: ", this.pedidoFeito.coordRemetente);
-    // console.log("pedidoFeito.coordDestino: ", this.pedidoFeito.coordDestino);
-    // this.mapaPlot.addRouting();
     this.isMapRouting = true;
-    // Rua Martins Ribeiro 12, Flamengo, Rio De Janeiro - Rio de Janeiro, 22231, Brazil
-    // Rua São Francisco Xavier, Maracanã, Rio De Janeiro - Rio de Janeiro, 20271, Brazil
   }
 
   async search(event: any) {

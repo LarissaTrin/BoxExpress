@@ -7,8 +7,8 @@ export class Pedidos {
       this.nomeDestino = '';
       this.enderecoDestino = '';
       this.coordDestino = [0, 0];
-      this.pacotes = '';
-      this.peso = '';
+      this.pacotes = 0;
+      this.peso = 0;
       this.isCaixas = false;
   }
   id: number;
@@ -18,7 +18,7 @@ export class Pedidos {
   nomeDestino: string;
   enderecoDestino: string;
   coordDestino: number[];
-  pacotes: string;
-  peso: string;
+  pacotes: number;
+  peso: number;
   isCaixas: boolean;
 }
