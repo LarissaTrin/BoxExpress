@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-1">
                   <button type="button" class="btn btn-danger btn-lg btn_marg"
-                    *ngIf="clientLogin">
+                    *ngIf="clientLogin" (click)="openModal(content, pedido.id)">
                     Detalhes
                   </button>
                   <button type="button" class="btn btn-danger btn-lg btn_marg"
@@ -56,3 +56,37 @@
     </h1>
   </div>
 </div>
+
+<!-- Modal -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header border-danger bg-danger">
+    <h2 class="modal-title" style="color: white" id="modal-basic-title">Pedido {{ detalhesList.id }}</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <h4 class="col-12">Nome Remetente:</h4>
+      <h4 class="col-12 text-right">{{ detalhesList.nomeRemetente }}</h4>
+      <h4 class="col-12">Endereço Remetente:</h4>
+      <h4 class="col-12 text-right">{{ detalhesList.enderecoRemetente }}</h4>
+      <hr>
+      <h4 class="col-12">Nome Destinatário:</h4>
+      <h4 class="col-12 text-right">{{ detalhesList.nomeDestino }}</h4>
+      <h4 class="col-12">Endereço Destinatário:</h4>
+      <h4 class="col-12 text-right">{{ detalhesList.enderecoDestino }}</h4>
+      <hr>
+      <h4 class="col-6">Peso Total da Entrega:</h4>
+      <h4 class="col-6 text-right" *ngIf="detalhesList.peso == 1"> Menos de 2Kg </h4>
+      <h4 class="col-6 text-right" *ngIf="detalhesList.peso == 2"> Entre 2kg a 10Kg </h4>
+      <h4 class="col-6 text-right" *ngIf="detalhesList.peso == 3"> Entre 10kg a 20Kg </h4>
+      <h4 class="col-6 text-right" *ngIf="detalhesList.peso == 4"> Acima de 20Kg </h4>
+      <p></p>
+      <h4 class="col-12 text-right-bold" *ngIf="!detalhesList.isCaixas"> Nenhuma caixa solicitada </h4>
+      <h4 class="col-6" *ngIf="detalhesList.isCaixas"> Numero de caixas solicitadas: </h4>
+      <h4 class="col-6 text-right" *ngIf="detalhesList.isCaixas"> {{ detalhesList.pacotes }} </h4>
+    </div>
+  </div>
+  <div class="modal-footer border-danger bg-danger">
+    <h2 style="color: white" id="modal-basic-title">R$ {{ detalhesList.preco }}</h2>
+  </div>
+</ng-template>

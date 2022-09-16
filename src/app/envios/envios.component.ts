@@ -82,6 +82,7 @@ export class EnviosComponent implements OnInit {
     this.pedidoFeito.pacotes = parseInt(this.pedidoForm.value.pacotes);
     this.pedidoFeito.peso = parseInt(this.pedidoForm.value.peso);
     this.pedidoFeito.id = this.pedidosFeitos;
+    this.pedidoFeito.preco = this.preco;
 
     this.mapaPlot.changePedidos(this.pedidoFeito);
     this.resetForm();

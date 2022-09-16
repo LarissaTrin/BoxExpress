@@ -10,7 +10,9 @@ export class Pedidos {
       this.pacotes = 0;
       this.peso = 0;
       this.isCaixas = false;
+      this.preco = '';
   }
+
   id: number;
   nomeRemetente: string;
   enderecoRemetente: string;
@@ -21,4 +23,5 @@ export class Pedidos {
   pacotes: number;
   peso: number;
   isCaixas: boolean;
+  preco: string;
 }
